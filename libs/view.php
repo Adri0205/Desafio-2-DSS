@@ -1,25 +1,23 @@
+<?php
 
-<?php 
- 
-class View{ 
-    private $data = [];
- 
-    function __construct(){ 
-        
+class View
+{
+    public $listaPersonas;
+    public $listaOcupaciones;
+    public $listaOcupaciones2;
+    public $persona;
+    public $mensaje;
+    public $mensaje1;
+    public $tipo_mensaje;
+
+    function __construct()
+    {
+
     }
-    
-    public function __set($name, $value){
-        $this->data[$name] = $value;
+
+    function renderView($vista)
+    {
+        require 'views/' . $vista;
     }
-    
-    public function __get($name){
-        return $this->data[$name] ?? null;
-    }
- 
-    function renderView($vista){
-        extract($this->data);
-        require 'views/' . $vista; 
-    } 
- 
+
 }
-?> 
