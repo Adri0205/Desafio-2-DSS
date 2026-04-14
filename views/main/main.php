@@ -45,7 +45,8 @@
 
 
         <div style="padding: 0;" id="conten">
-            <form role="form" id="formaPersona" action="<?php echo constant("URL") ?>Main/agregarPersona" method="POST">
+            <form role="form" id="formaPersona" action="<?php echo constant("URL") ?>Main/agregarPersona" method="POST"
+                novalidate>
                 <div class="col-md-12" id="conten">
                     <input type="hidden" name="id" id="idpersona">
 
@@ -54,7 +55,7 @@
                         <div class="input-group">
                             <input type="text" class="form-control" name="nombre"
                                 value="<?php echo $this->persona->getNombre(); ?>" id="nombre"
-                                placeholder="Ingresa el nombre" required>
+                                placeholder="Ingresa el nombre">
 
                         </div>
                     </div>
@@ -62,29 +63,30 @@
                         <label for="edad">Ingrese la edad de la persona:</label>
                         <div class="input-group">
                             <input type="number" class="form-control" id="edad" name="edad"
-                                value="<?php echo $this->persona->getEdad(); ?>" placeholder="Ingresa la edad" required>
+                                value="<?php echo $this->persona->getEdad(); ?>" placeholder="Ingresa la edad">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="edad">Ingrese el telefono de la persona:</label>
                         <div class="input-group">
                             <input type="tel" class="form-control" id="telefono" name="telefono"
-                                value="<?php echo $this->persona->getTelefono(); ?>" placeholder="Ingresa el telefono"
-                                required>
+                                value="<?php echo $this->persona->getTelefono(); ?>" placeholder="Ingresa el telefono">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="sexo">Ingrese el sexo de la persona:</label>
                         <div class="input-group">
-                            <select name="sexo" id="sexo" class="form-control" required>
-                                <option value="Masculino">Maculino</option>
+                            <select name="sexo" id="sexo" class="form-control">
+                                <option value="">Seleccionar...</option>
+                                <option value="Masculino">Masculino</option>
                                 <option value="Femenino">Femenino</option>
                             </select>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="ocupacion">Ingrese la ocupacion de la persona:</label>
-                        <div class="input-group"> <select name="ocupacion" id="ocupacion" class="form-control" required>
+                        <div class="input-group"> <select name="ocupacion" id="ocupacion" class="form-control">
+                                <option value="">Seleccionar...</option>
                                 <?php
                                 foreach ($this->listaOcupaciones as $lista) {
                                     ?>
@@ -102,7 +104,7 @@
                         <div class="input-group">
                             <input type="date" class="form-control" id="fecha"
                                 value="<?php echo $this->persona->getFecha(); ?>" name="fecha"
-                                placeholder="Ingresa la fecha" required>
+                                placeholder="Ingresa la fecha">
                         </div>
                     </div>
 

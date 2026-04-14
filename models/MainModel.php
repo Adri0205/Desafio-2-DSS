@@ -102,6 +102,7 @@ class MainModel extends Model
 
     }
 
+    //aqui/////////////////////////////////////
     function eliminarPersona($id)
     {
         try {
@@ -137,5 +138,6 @@ class MainModel extends Model
             return false;
         }
     }
+    //aqui///////////////////////////////
 }
 ?>

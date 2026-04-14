@@ -5,7 +5,7 @@
 </footer>
 <script src="<?php echo constant('URL') ?>public/js/funcionesform.js"></script>
 <script>
-    // Establecer valores iniciales del formulario
+
     if (document.getElementById('sexo')) {
         document.getElementById('sexo').value = '<?php echo $this->persona->getSexo(); ?>';
     }

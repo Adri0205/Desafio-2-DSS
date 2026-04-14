@@ -1,3 +1,91 @@
+function validarFormulario(e) {
+  e.preventDefault();
+
+  const nombre = document.getElementById("nombre").value.trim();
+  const edad = document.getElementById("edad").value.trim();
+  const telefono = document.getElementById("telefono").value.trim();
+  const sexo = document.getElementById("sexo").value;
+  const ocupacion = document.getElementById("ocupacion").value;
+  const fecha = document.getElementById("fecha").value;
+
+  let errores = [];
+
+  if (nombre === "") {
+    errores.push("El nombre es requerido");
+  } else if (nombre.length < 3) {
+    errores.push("El nombre debe contener al menos 3 caracteres");
+  } else if (nombre.length > 100) {
+    errores.push("El nombre no puede exceder 100 caracteres");
+  } else if (!/^[a-záéíóúñA-ZÁÉÍÓÚÑ\s]+$/.test(nombre)) {
+    errores.push("El nombre solo debe contener letras");
+  }
+
+  if (edad === "") {
+    errores.push("La edad es requerida");
+  } else if (isNaN(edad)) {
+    errores.push("La edad debe ser un número");
+  } else if (parseInt(edad) < 1 || parseInt(edad) > 120) {
+    errores.push("La edad debe estar entre 1 y 120 años");
+  }
+
+  if (telefono === "") {
+    errores.push("El teléfono es requerido");
+  } else if (!/^[0-9\-\s\+\(\)]+$/.test(telefono)) {
+    errores.push("El teléfono contiene caracteres inválidos");
+  } else if (telefono.replace(/\D/g, "").length < 7) {
+    errores.push("El teléfono debe contener al menos 7 dígitos");
+  }
+
+  if (sexo === "" || sexo === "Seleccionar") {
+    errores.push("Debe seleccionar un sexo");
+  }
+
+  if (ocupacion === "" || ocupacion === "Seleccionar") {
+    errores.push("Debe seleccionar una ocupación");
+  }
+
+  if (fecha === "") {
+    errores.push("La fecha de nacimiento es requerida");
+  } else {
+    const fechaCaptura = new Date(fecha);
+    const hoy = new Date();
+    hoy.setHours(0, 0, 0, 0);
+
+    if (fechaCaptura > hoy) {
+      errores.push("La fecha de nacimiento no puede ser en el futuro");
+    }
+
+    const edad_calculada = hoy.getFullYear() - fechaCaptura.getFullYear();
+    if (edad_calculada < 1 || edad_calculada > 120) {
+      errores.push(
+        "La fecha de nacimiento no es válida (edad debe ser 1-120 años)",
+      );
+    }
+  }
+
+  if (errores.length > 0) {
+    Swal.fire({
+      icon: "error",
+      title: "Errores en el formulario",
+      html:
+        "<ul style='text-align: left;'>" +
+        errores.map((err) => "<li>" + err + "</li>").join("") +
+        "</ul>",
+      confirmButtonColor: "#dc3545",
+    });
+    return false;
+  }
+
+  document.getElementById("formaPersona").submit();
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  const formulario = document.getElementById("formaPersona");
+  if (formulario) {
+    formulario.addEventListener("submit", validarFormulario);
+  }
+});
+
 function alerta(id) {
   Swal.fire({
     title: "¿Eliminar persona?",
